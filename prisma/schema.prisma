@@ -13,9 +13,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/* para criar banco de dados
-model User {
+model Produto {
   id Int @id @default(autoincrement())
-  email String @unique
-  name String?
-}*/
+  nome String
+  lote String @unique
+  validade String
+}
