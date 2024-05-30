@@ -12,6 +12,7 @@
   "dependencies": {
     "@prisma/client": "^5.13.0",
     "axios": "^1.6.8",
+    "cors": "^2.8.5",
     "express": "^4.19.2",
     "express-validator": "^7.0.1",
     "prompt-sync": "^4.2.0"

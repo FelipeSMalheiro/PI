@@ -19,6 +19,7 @@ model Produto {
   lote String @unique
   validade String
   estoque Estoque[]
+  produto Fornecedor[]
 }
 
 model Estoque {
@@ -26,6 +27,16 @@ model Estoque {
   nome String
   quantidade Int
   categoria String
+  produtoId Int
+  produto Produto @relation(fields: [produtoId], references: [id])
+}
+
+model Fornecedor {
+  id Int @id @default(autoincrement())
+  nome String
+  telefone Float
+  email String
+  quantidade Int
   produtoId Int
   produto Produto @relation(fields: [produtoId], references: [id])
 }

@@ -1,10 +1,10 @@
-import Estoque from '../models/estoque.model.js'
+import Fornecedor from '../models/fornecedor.model.js'
 import { validationResult } from 'express-validator'
 
-export default class EstoqueController {
+export default class FornecedorController {
     static async index(req, res) {
-      const estoques = await Estoque.findMany()
-        res.json(estoques)
+      const fornecedores = await Fornecedor.findMany()
+        res.json(fornecedores)
     }
 
     static async create(req, res) {
@@ -12,11 +12,11 @@ export default class EstoqueController {
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })
         }
-        const estoque = await Estoque.create({
+        const fornecedor = await Fornecedor.create({
           data: req.body
         })
-        console.log(estoque)
-        res.json(estoque)
+        console.log(fornecedor)
+        res.json(fornecedor)
       }
 
       static async show(req, res) {
@@ -24,15 +24,15 @@ export default class EstoqueController {
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })
         }
-        const estoque = await Estoque.findUnique({
+        const fornecedor = await Fornecedor.findUnique({
             where: {
                 id: parseInt(req.params.id)
             }
         })
-        if (!estoque) {
-            return res.status(404).json({ message: 'Estoque não encontrado' })
+        if (!fornecedor) {
+            return res.status(404).json({ message: 'Fornecedor não encontrado' })
         }
-        res.json(estoque)
+        res.json(fornecedor)
     }
     
     static async update(req, res) {
@@ -40,21 +40,21 @@ export default class EstoqueController {
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })
         }
-        const estoque = await Estoque.findUnique({
+        const fornecedor = await Fornecedor.findUnique({
             where: {
                 id: parseInt(req.params.id)
             }
         })
-        if (!estoque) {
-            return res.status(404).json({ message: 'Estoque não encontrado' })
+        if (!fornecedor) {
+            return res.status(404).json({ message: 'Fornecedor não encontrado' })
         }
-        const updatedEstoque = await Estoque.update({
+        const updatedFornecedor = await Fornecedor.update({
             where: {
                 id: parseInt(req.params.id)
             },
             data: req.body
         })
-        res.json(updatedEstoque)
+        res.json(updatedFornecedor)
     }
 
     static async delete(req, res) {
@@ -62,20 +62,20 @@ export default class EstoqueController {
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })
         }
-        const estoque = await Estoque.findUnique({
+        const fornecedor = await Fornecedor.findUnique({
           where: {
             id: parseInt(req.params.id)
           }
         })
-        if (!estoque) {
-          return res.status(404).json({ message: 'Estoque não encontrado' })
+        if (!fornecedor) {
+          return res.status(404).json({ message: 'Fornecedor não encontrado' })
         }
-        await Estoque.delete({
+        await Fornecedor.delete({
           where: {
             id: parseInt(req.params.id)
           }
         })
-        res.json({ message: 'Estoque deletado com sucesso' })
+        res.json({ message: 'Fornecedor deletado com sucesso' })
       }
 }
 
